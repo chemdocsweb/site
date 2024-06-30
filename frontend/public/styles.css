@@ -176,6 +176,10 @@ a {
   color: var(--text2_color);
 }
 
+.rating p {
+  text-align: justify;
+}
+
 .star {
   color: var(--hover_color);
   font-size: 1.5rem;

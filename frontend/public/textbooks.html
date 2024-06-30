@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="/static/styles.css">
+  <title>Textbooks</title>
+</head>
+
+<body>
+  <main class="textbooks">
+    <section class="title">
+      <h3>Textbooks</h3>
+      <button id="toggle-theme">Toggle Theme</button>
+    </section>
+    {% for subInfo in subs_info %}
+    <section class="subject" id="{{ subInfo['subject'].lower() }}">
+      <div class="subject_info">
+        <h3>{{ subInfo['subject'] }}</h3>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ subInfo['sub_info'] }}</p>
+      </div>
+      {% for book in textbooks if book['subject'] == subInfo['subject'] %}
+      <div class="textbook" id="{{ book['name'].lower() }}">
+        <div class="book">
+          <img src="{{ book['img_src'] }}" >
+          <div class="book-text-link">
+            <div class="book-text">
+              <h3>{{ book['name'] }}</h3>
+              <p>{{ 'Author: ' ~ book['author'] }}</p>
+            </div>
+            <div class="book-links">
+              <a href="{{ book['preview'] }}">Preview</a>
+              <a href="{{ book['download'] }}">Download</a>
+            </div>
+          </div>
+        </div>
+        <div class="review">
+          <div class="solution_book">
+            <a href="{{ book['soln_book'] }}">solution book</a>
+          </div>
+          <div class="rating">
+            <h3>Review: {{ book['review_val'] }}/5</h3>
+            <span class="star" data-rating-val="{{ book['review_val'] }}" data-text="★&nbsp;★&nbsp;★&nbsp;★&nbsp;★">★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</span>
+          </div>
+          <p>&nbsp;&nbsp;&nbsp;{{ book['review'] }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </section>
+    {% endfor %}
+    <section class="pagination">
+      {% for i in subs_count %}
+      <button class="sub_btn" id="{{ i }}">{{ i }}</button>
+      {% endfor %}
+    </section>
+  </main>
+</body>
+<script type="text/javascript" src="/static/main.js"></script>
+<script>
+  // All elements with classes
+  var sub_btns = document.querySelectorAll('.sub_btn');
+  var subjects = document.querySelectorAll('.subject');
+  var textbooks = document.querySelectorAll('.textbook');
+  var reviews = document.querySelectorAll('.review');
+  
+  // onload conditions
+  sub_btns[0].classList.add('active');
+  subjects[0].style.display = 'block';
+  var default_review = textbooks[0].querySelector('.review');
+  default_review.style.display = 'block';
+  var default_star = default_review.querySelector('.star');
+  var default_star_rate = default_star.dataset.ratingVal;
+  var default_star_width = (default_star_rate * 20) + '%';
+    // console.log(${star_width} + '%');
+    default_star.style.setProperty('--rating_width', default_star_width);
+    console.log(default_star_width)
+    
+  var old_tb_review = default_review;
+  
+  // EventListeners
+  const toggleButton = document.getElementById('toggle-theme');
+  toggleButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+  });
+  textbooks.forEach(textbook => {
+    textbook.addEventListener('click',  review_click)
+  });
+  sub_btns.forEach(sub_btn => {
+    sub_btn.addEventListener('click', subject_pagination)
+  })
+</script>
+</html>

@@ -7,15 +7,15 @@ textbooks_link = "https://docs.google.com/spreadsheets/d/1xI19BIX49dks6SqWn1H1IM
 file_path = "../frontend/public"
 app = Flask(__name__, template_folder=file_path, static_url_path='/static', static_folder=file_path)
 
-'''@app.route('/')
+@app.route('/')
 def index():
-    return render_template('index.html')'''
+    return render_template('index.html')
 
 @app.route('/static/<path:filename>')
 def static_files(filename):
     return send_from_directory(file_path, filename)
 
-@app.route('/')
+@app.route('/textbooks.html')
 def textbooks():
     subs_count, subjects_info, textbooks = textbooksData(textbooks_link)
     

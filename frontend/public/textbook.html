@@ -38,7 +38,7 @@
         <div class="review" style="display: block;">
           <div class="rating">
             <h3>Review: 5/5</h3>
-            <span class="star" data-rating-val="5" data-text="★&nbsp;★&nbsp;★&nbsp;★&nbsp;★">★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</span>
+            <span class="star" data-rating-val="4.5" data-text="★&nbsp;★&nbsp;★&nbsp;★&nbsp;★">★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</span>
           </div>
           <p>&nbsp;&nbsp;&nbsp;this book is basically good for numericals</p>
         </div>
@@ -61,7 +61,7 @@
         <div class="review">
           <div class="rating">
             <h3>Review: 5/5</h3>
-            <span class="star" data-rating-val="5" data-text="★&nbsp;★&nbsp;★&nbsp;★&nbsp;★">★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</span>
+            <span class="star" data-rating-val="3.5" data-text="★&nbsp;★&nbsp;★&nbsp;★&nbsp;★">★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</span>
           </div>
           <p>&nbsp;&nbsp;&nbsp;this book is basically good for numericals</p>
         </div>
@@ -84,7 +84,7 @@
         <div class="review">
           <div class="rating">
             <h3>Review: 5/5</h3>
-            <span class="star" data-rating-val="5" data-text="★&nbsp;★&nbsp;★&nbsp;★&nbsp;★">★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</span>
+            <span class="star" data-rating-val="4" data-text="★&nbsp;★&nbsp;★&nbsp;★&nbsp;★">★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</span>
           </div>
           <p>&nbsp;&nbsp;&nbsp;this book is basically good for numericals</p>
         </div>
@@ -107,7 +107,7 @@
         <div class="review">
           <div class="rating">
             <h3>Review: 5/5</h3>
-            <span class="star" data-rating-val="5" data-text="★&nbsp;★&nbsp;★&nbsp;★&nbsp;★">★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</span>
+            <span class="star" data-rating-val="3" data-text="★&nbsp;★&nbsp;★&nbsp;★&nbsp;★">★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</span>
           </div>
           <p>&nbsp;&nbsp;&nbsp;this book is basically good for numericals</p>
         </div>
@@ -130,7 +130,7 @@
         <div class="review">
           <div class="rating">
             <h3>Review: 5/5</h3>
-            <span class="star" data-rating-val="5" data-text="★&nbsp;★&nbsp;★&nbsp;★&nbsp;★">★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</span>
+            <span class="star" data-rating-val="3.5" data-text="★&nbsp;★&nbsp;★&nbsp;★&nbsp;★">★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</span>
           </div>
           <p>&nbsp;&nbsp;&nbsp;this book is basically good for numericals</p>
         </div>
@@ -161,7 +161,7 @@
         <div class="review">
           <div class="rating">
             <h3>Review: 5/5</h3>
-            <span class="star" data-rating-val="5" data-text="★&nbsp;★&nbsp;★&nbsp;★&nbsp;★">★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</span>
+            <span class="star" data-rating-val="4" data-text="★&nbsp;★&nbsp;★&nbsp;★&nbsp;★">★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</span>
           </div>
           <p>&nbsp;&nbsp;&nbsp;this book is basically good for numericals</p>
         </div>
@@ -587,6 +587,13 @@
   subjects[0].style.display = 'block';
   var default_review = textbooks[0].querySelector('.review');
   default_review.style.display = 'block';
+  var default_star = default_review.querySelector('.star');
+  var default_star_rate = default_star.dataset.ratingVal;
+  var default_star_width = (default_star_rate * 20) + '%';
+    // console.log(${star_width} + '%');
+    default_star.style.setProperty('--rating_width', default_star_width);
+    console.log(default_star_width)
+    
   var old_tb_review = default_review;
   
   // EventListeners
@@ -608,7 +615,10 @@
     }
     var star = this.querySelector('.star');
     var star_rate = star.dataset.ratingVal;
-    var star_width;
+    var star_width = (star_rate * 20) + '%';
+    // console.log(${star_width} + '%');
+    star.style.setProperty('--rating_width', star_width);
+    console.log(star_width)
     
   }
   

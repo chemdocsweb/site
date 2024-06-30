@@ -1,6 +1,7 @@
 :root {
   --main_color : #163976;
   --hover_color: #2E528F;
+  --rating_width: 0;
 }
 
 * {
@@ -116,7 +117,7 @@ a {
   height: 100%;
   top: 0;
   left: 0;
-  width: 80%;
+  width: var(--rating_width);
   overflow: hidden;
 }
 .pagination {

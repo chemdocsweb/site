@@ -22,5 +22,9 @@ function subject_pagination() {
   });
   subjects[index].style.display = 'block';
   sub_btns[index].classList.add('active');
-  window.scrollTo(0, 0);
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth'
+  });
 }

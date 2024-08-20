@@ -159,7 +159,7 @@ a {
 }
 
 .review .solution_book {
-  display: none;
+  display: block;
   width: 100%;
   text-align: right;
 }
